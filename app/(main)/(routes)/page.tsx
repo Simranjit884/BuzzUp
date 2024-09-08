@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>this is a protected route</div>;
+  return <div className="h-full bg-red-400 p-5">this is a protected route</div>;
 }

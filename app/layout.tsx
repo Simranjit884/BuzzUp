@@ -45,7 +45,7 @@ export default function RootLayout({
             attribute="class"
             defaultTheme="dark"
             // forcedTheme="light"
-            enableSystem={false}
+            enableSystem
             storageKey="buzzUp-theme"
           >
             {children}

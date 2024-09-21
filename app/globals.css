@@ -8,6 +8,16 @@ body,
   height: 100%;
 }
 
+:root {
+  --primary: 24 9.8% 10%;
+  --primary-foreground: 60 9.1% 97.8%;
+}
+
+.dark {
+  --primary: 60 9.1% 97.8%;
+  --primary-foreground: 24 9.8% 10%;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

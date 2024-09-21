@@ -2,8 +2,14 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { NavigationAction } from "./navigation-action";
+import { Separator } from "../ui/separator";
+import { ScrollArea } from "../ui/scroll-area";
 
-const NavigationSidebar = async () => {
+import NavigationItem from "./navigation-item";
+// import { ModeToggle } from "../mode-toggle";
+// import { UserButton } from "@clerk/nextjs";
+
+const NavigationSideBar = async () => {
   const profile = await currentProfile();
 
   if (!profile) {
@@ -23,8 +29,31 @@ const NavigationSidebar = async () => {
   return (
     <div className="flex h-full w-full flex-col items-center space-y-4 py-3 text-primary dark:bg-[#1E1F22]">
       <NavigationAction />
+      <Separator className="mx-auto h-[2px] w-10 rounded-md bg-zinc-300 dark:bg-zinc-700" />
+      <ScrollArea className="w-full flex-1">
+        {servers.map((server) => (
+          <div key={server.id} className="mb-4">
+            <NavigationItem
+              id={server.id}
+              imageUrl={server.imageUrl}
+              name={server.name}
+            />
+          </div>
+        ))}
+      </ScrollArea>
+      {/* <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
+        <ModeToggle />
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "h-[48px] w-[48px]",
+            },
+          }}
+        />
+      </div> */}
     </div>
   );
 };
 
-export default NavigationSidebar;
+export default NavigationSideBar;

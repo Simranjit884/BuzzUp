@@ -5,7 +5,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
-import { ModalProvider } from "@/components/providers/modal-provider";
+// import { ModalProvider } from "@/components/providers/modal-provider";
+import { CreateServerModal } from "@/components/modals/create-server-modal";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -49,7 +50,7 @@ export default function RootLayout({
             enableSystem
             storageKey="buzzUp-theme"
           >
-            <ModalProvider />
+            <CreateServerModal />
             {children}
           </ThemeProvider>
         </body>

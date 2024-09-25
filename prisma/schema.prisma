@@ -28,17 +28,17 @@ model Profile {
   updatedAt DateTime @updatedAt
 }
 
-model Server {
+model Server{
   id String @id @default(uuid())
   name String
   imageUrl String @db.Text
-  inviteCode String @db.Text
-
-  members Member[]
-  channels Channel[]
+  inviteCode String @unique
 
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  members Member[]
+  channels Channel[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -52,7 +52,7 @@ enum MemberRole {
   GUEST
 }
 
-model Member {
+model Member{
   id String @id @default(uuid())
   role MemberRole @default(GUEST)
 
@@ -75,7 +75,7 @@ enum ChannelType {
   VIDEO
 }
 
-model Channel {
+model Channel{
   id String @id @default(uuid())
   name String
   type ChannelType @default(TEXT)
@@ -86,6 +86,10 @@ model Channel {
   serverId String
   server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
   @@index([profileId])
   @@index([serverId])
 }
+

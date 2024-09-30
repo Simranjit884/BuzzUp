@@ -10,6 +10,7 @@ export async function POST(req: Request) {
     const { searchParams } = new URL(req.url);
 
     const serverId = searchParams.get("serverId");
+    //searchParams.get("serverId") is used to retrieve the value of the serverId query parameter from the request URL.
 
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -45,6 +46,7 @@ export async function POST(req: Request) {
         },
       },
     });
+
     return NextResponse.json(server);
   } catch (error) {
     console.log("CHANNELS_POST", error);

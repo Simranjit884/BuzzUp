@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     if (name === "general") {
       return new NextResponse("Name cannot be 'general'", { status: 400 });
     }
-
+    // server update is used to update the server with the new channel
     const server = await db.server.update({
       where: {
         id: serverId,

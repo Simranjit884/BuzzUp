@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export const LeaveServerModal = () => {
-  const [isLoading, setIsLoding] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { type, isOpen, onClose, data } = useModal();
 
   const router = useRouter();
@@ -18,7 +18,7 @@ export const LeaveServerModal = () => {
 
   const onClick = async () => {
     try {
-        setIsLoding(true);
+        setIsLoading(true);
 
         const url = `/api/servers/${server?.id}/leave`;
         const response = await axios.patch(url);

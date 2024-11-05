@@ -95,6 +95,15 @@ const ServerSideBar = async ({ serverId }: serverSideBarProps) => {
               id: channel.id,
             })),
           },
+          {
+            label: "Members",
+            type: "member",
+            data: members?.map((member) => ({
+              icon: roleIconMap[member.role],
+              name: member.profile.name,
+              id: member.id,
+            })),
+          },
         ]} />        
       </ScrollArea>
     </div>

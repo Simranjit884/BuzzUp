@@ -67,7 +67,35 @@ const ServerSideBar = async ({ serverId }: serverSideBarProps) => {
     <div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[#F2F3F5]">
       <ServerHeader server={server} role={role} />
       <ScrollArea className="flex-1 px-3 mt-2">        
-        <ServerSearch />        
+        <ServerSearch data={[
+          {
+            label: "Text Channels",
+            type: "channel",
+            data: textChannels?.map((channel) => ({
+              icon: iconMap[channel.type],
+              name: channel.name,
+              id: channel.id,
+            })),
+          },
+          {
+            label: "Audio Channels",
+            type: "channel",
+            data: audioChannels?.map((channel) => ({
+              icon: iconMap[channel.type],
+              name: channel.name,
+              id: channel.id,
+            })),
+          },
+          {
+            label: "Video Channels",
+            type: "channel",
+            data: videoChannels?.map((channel) => ({
+              icon: iconMap[channel.type],
+              name: channel.name,
+              id: channel.id,
+            })),
+          },
+        ]} />        
       </ScrollArea>
     </div>
   );

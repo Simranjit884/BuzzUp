@@ -1,14 +1,27 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { ChannelType } from "@prisma/client";
+import { ChannelType, MemberRole } from "@prisma/client";
 import { redirect } from "next/navigation";
 import ServerHeader from "./server-header";
 import { ScrollArea } from "../ui/scroll-area";
 import { ServerSearch } from "./server-search";
+import { Hash, Video, Mic, ShieldAlert, ShieldCheck } from "lucide-react";
 
 interface serverSideBarProps {
   serverId: string;
 }
+
+const iconMap = {
+  [ChannelType.TEXT]: <Hash className="w-4 h-4 mr-2" />,
+  [ChannelType.AUDIO]: <Mic className="w-4 h-4 mr-2" />,
+  [ChannelType.VIDEO]: <Video className="w-4 h-4 mr-2" />,
+};
+
+const roleIconMap = {
+  [MemberRole.GUEST]: null,
+  [MemberRole.MODERATOR]: <ShieldCheck className="w-4 h-4 mr-2" />,
+  [MemberRole.ADMIN]: <ShieldAlert className="w-4 h-4 mr-2" />,
+};
 
 const ServerSideBar = async ({ serverId }: serverSideBarProps) => {
   const profile = await currentProfile();
